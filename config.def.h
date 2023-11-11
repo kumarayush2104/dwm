@@ -59,6 +59,8 @@ static const char *mediaPreviouscmd[] = { "playerctl", "previous", NULL };
 static const char *volumeUpcmd[] = { "amixer", "set", "Master", "5%+", NULL };
 static const char *volumeDowncmd[] = { "amixer", "set", "Master", "5%-", NULL };
 static const char *muteToggle[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *scrotScreenshot[]  = { "scrot", "%Y-%m-%d-%s_$wx$h.jpg", "-e", "mv $f ~/Pictures/Screenshots/", NULL };
+static const char *scrotSelectScreenshot[]  = { "scrot", "-s", "%Y-%m-%d-%s_$wx$h.jpg", "-e", "mv $f ~/Pictures/Screenshots/", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -103,7 +105,9 @@ static const Key keys[] = {
 	{ 0,			  XF86XK_AudioPrev,   spawn,          { .v = mediaPreviouscmd } },
 	{ 0, 			  XF86XK_AudioRaiseVolume,    spawn,  { .v = volumeUpcmd } },
 	{ 0,			  XF86XK_AudioLowerVolume,    spawn,  { .v = volumeDowncmd } },
-	{ 0, 			  XF86XK_AudioMute, 	      spawn,  { .v = muteToggle } }
+	{ 0, 			  XF86XK_AudioMute, 	      spawn,  { .v = muteToggle } },
+	{ 0, 			  XK_Print,	      spawn,	      { .v = scrotScreenshot } },
+	{ ShiftMask,		  XK_Print,	      spawn,	      { .v = scrotSelectScreenshot } }
 };
 
 /* button definitions */
